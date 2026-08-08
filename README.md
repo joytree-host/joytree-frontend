@@ -12,7 +12,14 @@ visual language are consistent across the whole product.
 - `home.css` — home page specific layout (hero, marquee, features, CTA).
 - `home.html` — the home page itself.
 - `home.js` — theme toggle + mobile menu, same pattern as the docs site.
-- `logo.png` / `favicon.png` — brand assets.
+- `assets/`, `icons/` — hero/story images and service icons, carried over
+  from the live site.
+- `favicon_192.png`, `favicon_256.png`, `favicon_512.png`,
+  `favicon_512_maskable.png`, `logo_optimized.jpg` — brand assets, carried
+  over from the live site so this rebuild stays visually identical where it
+  should (logo, icons) while the layout/theme changes.
+- `manifest.webmanifest`, `sw.js`, `robots.txt`, `sitemap.xml` — carried
+  over as-is from the live site.
 
 ## Status
 
