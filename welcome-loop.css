@@ -1,0 +1,116 @@
+/* ==========================================================================
+   JoyTree — Welcome loop (welcome-loop.css)
+   The falling-leaf intro banner above the hero. Ported from the live site's
+   .jt-wl-* system: leaves tile the banner, "clear" away in a scatter-fall
+   with three distinct motion variants (not one shared path — that
+   uniformity is what makes procedural motion read as synthetic), reveal the
+   wordmark, then "gather" back on the same DOM nodes (never rebuilt) before
+   the cycle repeats. Depends on theme.css for tokens.
+   ========================================================================== */
+
+.welcome-loop{
+  position: relative;
+  width: 100%;
+  height: clamp(168px, 24vw, 240px);
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-lg);
+  margin-bottom: 8px;
+}
+.wl-bg{
+  position: absolute; inset: 0;
+  background: color-mix(in srgb, var(--brand) 7%, var(--code-bg));
+  pointer-events: none;
+}
+.wl-flare{
+  position: absolute; left: 50%; top: 50%;
+  width: 120%; height: 300%;
+  transform: translate(-50%,-50%) scale(0) rotate(-4deg);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 38% 34%, rgba(255,255,255,.30) 0%, transparent 20%),
+    radial-gradient(circle at 62% 58%, color-mix(in srgb, var(--brand-strong) 40%, white) 0%, transparent 34%),
+    radial-gradient(circle at 50% 50%, var(--brand-strong) 8%, var(--brand) 34%, transparent 64%);
+  mix-blend-mode: screen;
+  filter: blur(3px);
+  opacity: 0; pointer-events: none;
+}
+.wl-flare.wl-flare-burst{ animation: wlFlareBurst 1.6s ease-out; }
+@keyframes wlFlareBurst{
+  0%{ transform: translate(-50%,-50%) scale(0); opacity: 0; }
+  30%{ opacity: .6; }
+  100%{ transform: translate(-50%,-50%) scale(1); opacity: 0; }
+}
+
+.wl-leaves{ position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+.wl-leaf{ position: absolute; will-change: transform, opacity; }
+.wl-leaf svg{ display: block; width: 100%; height: 100%; }
+
+.wl-leaf.wl-clearing{ animation-timing-function: cubic-bezier(.33,0,.18,1); animation-fill-mode: forwards; }
+.wl-leaf.wl-clearing.v1{ animation-name: wlLeafClear1; }
+.wl-leaf.wl-clearing.v2{ animation-name: wlLeafClear2; }
+.wl-leaf.wl-clearing.v3{ animation-name: wlLeafClear3; }
+@keyframes wlLeafClear1{
+  0%{   transform: rotate(var(--start-rot,0deg)) translate(0,0) scale(1); opacity: 1; filter: blur(0px); }
+  24%{  transform: rotate(calc(var(--start-rot,0deg) + 16deg)) translate(calc(var(--fall-x,0px) * .35),24%) scale(.98); opacity: 1; filter: blur(.3px); }
+  58%{  transform: rotate(calc(var(--start-rot,0deg) + 95deg)) translate(calc(var(--fall-x,0px) * -.45),72%) scale(.93); opacity: .88; filter: blur(.7px); }
+  100%{ transform: rotate(var(--fall-rot,220deg)) translate(var(--fall-x,0px),160%) scale(.85); opacity: 0; filter: blur(0px); }
+}
+@keyframes wlLeafClear2{
+  0%{   transform: rotate(var(--start-rot,0deg)) translate(0,0) scale(1); opacity: 1; filter: blur(0px); }
+  30%{  transform: rotate(calc(var(--start-rot,0deg) - 22deg)) translate(calc(var(--fall-x,0px) * -.5),32%) scale(.97); opacity: 1; filter: blur(.4px); }
+  66%{  transform: rotate(calc(var(--start-rot,0deg) + 55deg)) translate(calc(var(--fall-x,0px) * .6),84%) scale(.91); opacity: .82; filter: blur(.6px); }
+  100%{ transform: rotate(var(--fall-rot,220deg)) translate(var(--fall-x,0px),160%) scale(.84); opacity: 0; filter: blur(0px); }
+}
+@keyframes wlLeafClear3{
+  0%{   transform: rotate(var(--start-rot,0deg)) translate(0,0) scale(1); opacity: 1; filter: blur(0px); }
+  40%{  transform: rotate(calc(var(--start-rot,0deg) + 28deg)) translate(calc(var(--fall-x,0px) * .22),46%) scale(.95); opacity: 1; filter: blur(.5px); }
+  72%{  transform: rotate(calc(var(--start-rot,0deg) - 40deg)) translate(calc(var(--fall-x,0px) * -.3),96%) scale(.89); opacity: .78; filter: blur(.6px); }
+  100%{ transform: rotate(var(--fall-rot,220deg)) translate(var(--fall-x,0px),160%) scale(.86); opacity: 0; filter: blur(0px); }
+}
+
+.wl-leaf.wl-gathering{ animation-timing-function: cubic-bezier(.22,.7,.25,1); animation-fill-mode: forwards; opacity: 0; }
+.wl-leaf.wl-gathering.v1{ animation-name: wlLeafGather1; }
+.wl-leaf.wl-gathering.v2{ animation-name: wlLeafGather2; }
+.wl-leaf.wl-gathering.v3{ animation-name: wlLeafGather3; }
+@keyframes wlLeafGather1{
+  0%{   transform: rotate(var(--gather-start-rot,0deg)) translate(var(--gather-x,0px),-160%) scale(.85); opacity: 0; filter: blur(.5px); }
+  42%{  transform: rotate(calc(var(--gather-start-rot,0deg) - 20deg)) translate(calc(var(--gather-x,0px) * .4),-52%) scale(.95); opacity: .85; filter: blur(.3px); }
+  76%{  transform: rotate(calc(var(--rest-rot,0deg) + 11deg)) translate(calc(var(--gather-x,0px) * -.16),-7%) scale(1.02); opacity: 1; filter: blur(0px); }
+  100%{ transform: rotate(var(--rest-rot,0deg)) translate(0,0) scale(1); opacity: 1; filter: blur(0px); }
+}
+@keyframes wlLeafGather2{
+  0%{   transform: rotate(var(--gather-start-rot,0deg)) translate(var(--gather-x,0px),-160%) scale(.84); opacity: 0; filter: blur(.6px); }
+  48%{  transform: rotate(calc(var(--gather-start-rot,0deg) + 24deg)) translate(calc(var(--gather-x,0px) * -.36),-46%) scale(.94); opacity: .8; filter: blur(.4px); }
+  80%{  transform: rotate(calc(var(--rest-rot,0deg) - 9deg)) translate(calc(var(--gather-x,0px) * .14),-6%) scale(1.03); opacity: 1; filter: blur(0px); }
+  100%{ transform: rotate(var(--rest-rot,0deg)) translate(0,0) scale(1); opacity: 1; filter: blur(0px); }
+}
+@keyframes wlLeafGather3{
+  0%{   transform: rotate(var(--gather-start-rot,0deg)) translate(var(--gather-x,0px),-160%) scale(.86); opacity: 0; filter: blur(.4px); }
+  38%{  transform: rotate(calc(var(--gather-start-rot,0deg) + 14deg)) translate(calc(var(--gather-x,0px) * .3),-60%) scale(.93); opacity: .75; filter: blur(.5px); }
+  74%{  transform: rotate(calc(var(--rest-rot,0deg) + 8deg)) translate(calc(var(--gather-x,0px) * -.2),-9%) scale(1.02); opacity: 1; filter: blur(0px); }
+  100%{ transform: rotate(var(--rest-rot,0deg)) translate(0,0) scale(1); opacity: 1; filter: blur(0px); }
+}
+
+.wl-text{
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  text-align: center; padding: 0 20px;
+  opacity: 0; transition: opacity .6s ease;
+}
+.wl-text.wl-text-visible{ opacity: 1; }
+.wl-kicker{
+  font-family: var(--font-mono); font-size: clamp(.68rem, 1.6vw, .85rem);
+  letter-spacing: .1em; text-transform: uppercase; color: var(--brand-tint); opacity: .9;
+  max-width: min(90%, 420px); line-height: 1.5;
+}
+.wl-title{
+  font-family: var(--font-display); font-weight: 800; letter-spacing: -.02em;
+  font-size: clamp(2rem, 7vw, 4.2rem);
+  color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .wl-leaf{ display: none; }
+  .wl-flare{ display: none; }
+}

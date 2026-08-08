@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="theme.css?v=1">
+<link rel="stylesheet" href="welcome-loop.css?v=1">
 <link rel="stylesheet" href="home.css?v=1">
 </head>
 <body>
@@ -46,6 +47,20 @@
     <a class="nav-link" href="#pricing">Pricing</a>
   </nav>
 </header>
+
+<!-- ═══════════════ Welcome loop (falling-leaf intro) ═══════════════ -->
+<noscript><style>.welcome-loop{display:none!important}</style></noscript>
+<div class="container">
+  <div class="welcome-loop" id="welcomeLoop" aria-hidden="true">
+    <div class="wl-bg"></div>
+    <div class="wl-flare" id="wlFlare"></div>
+    <div class="wl-leaves" id="wlLeaves"></div>
+    <div class="wl-text" id="wlText">
+      <span class="wl-kicker">Welcome to your all-in-one shipping site</span>
+      <span class="wl-title">JOYTREE</span>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════════ Hero ═══════════════ -->
 <section class="hero">
@@ -102,28 +117,287 @@
   </div>
 </section>
 
-<!-- ═══════════════ Features ═══════════════ -->
-<section class="features" id="how-it-works">
+<!-- ═══════════════ Story ═══════════════ -->
+<section class="section story" id="story" aria-label="How developers discover JoyTree">
   <div class="container">
-    <div class="features-head">
-      <h2>From a prompt to a live endpoint</h2>
-      <p>No YAML to write, no infrastructure to configure. Three ways to ship, one place to manage it all.</p>
+    <div class="section-head">
+      <div class="section-label" style="justify-content:center;">A developer's actual journey</div>
+      <h2 class="section-title">From "how do I make this live?" to live in minutes.</h2>
+      <p class="section-sub">What happens when a developer who's never touched JoyTree finds it for the first time — start to deploy.</p>
+    </div>
+
+    <div class="story-frame" id="storyFrame">
+      <div class="story-slide active" data-index="0">
+        <img src="assets/story/story-1.jpg" alt="He's built his site — but how does he make it live?">
+        <div class="story-caption"><span class="story-kicker">Step 1 of 8 · The problem</span><span class="story-line">He's built his site — but how does he make it live?</span></div>
+      </div>
+      <div class="story-slide" data-index="1">
+        <img src="assets/story/story-2.jpg" alt="Let me search for the best hosting for developers.">
+        <div class="story-caption"><span class="story-kicker">Step 2 of 8 · Searching</span><span class="story-line">"Let me search for the best hosting for developers."</span></div>
+      </div>
+      <div class="story-slide" data-index="2">
+        <img src="assets/story/story-3.jpg" alt="Render, Netlify, JoyTree… which one is actually best?">
+        <div class="story-caption"><span class="story-kicker">Step 3 of 8 · So many options</span><span class="story-line">Render, Netlify, JoyTree… which one is actually best?</span></div>
+      </div>
+      <div class="story-slide" data-index="3">
+        <img src="assets/story/story-4.jpg" alt="This is exactly what I need!">
+        <div class="story-caption"><span class="story-kicker">Step 4 of 8 · The discovery</span><span class="story-line">"This is exactly what I need!"</span></div>
+      </div>
+      <div class="story-slide" data-index="4">
+        <img src="assets/story/story-5.jpg" alt="Time to click through to JoyTree.site.">
+        <div class="story-caption"><span class="story-kicker">Step 5 of 8 · Decision made</span><span class="story-line">Time to click through to JoyTree.site.</span></div>
+      </div>
+      <div class="story-slide" data-index="5">
+        <img src="assets/story/story-6.jpg" alt="Let me explore JoyTree and see what I can do.">
+        <div class="story-caption"><span class="story-kicker">Step 6 of 8 · Exploring</span><span class="story-line">"Let me explore JoyTree and see what I can do."</span></div>
+      </div>
+      <div class="story-slide" data-index="6">
+        <img src="assets/story/story-7.jpg" alt="Wow — this deployment is fast!">
+        <div class="story-caption"><span class="story-kicker">Step 7 of 8 · Deploying</span><span class="story-line">"Wow — this deployment is fast!"</span></div>
+      </div>
+      <div class="story-slide" data-index="7">
+        <img src="assets/story/story-8.jpg" alt="Deployment successful. His site is live.">
+        <div class="story-caption"><span class="story-kicker">Step 8 of 8 · Live</span><span class="story-line">Deployment successful. His site is live. 🎉</span></div>
+      </div>
+
+      <button class="story-nav prev" id="storyPrev" aria-label="Previous step"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="story-nav next" id="storyNext" aria-label="Next step"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+
+    <div class="story-dots" id="storyDots">
+      <button class="story-dot active" data-index="0" aria-label="Go to step 1"></button>
+      <button class="story-dot" data-index="1" aria-label="Go to step 2"></button>
+      <button class="story-dot" data-index="2" aria-label="Go to step 3"></button>
+      <button class="story-dot" data-index="3" aria-label="Go to step 4"></button>
+      <button class="story-dot" data-index="4" aria-label="Go to step 5"></button>
+      <button class="story-dot" data-index="5" aria-label="Go to step 6"></button>
+      <button class="story-dot" data-index="6" aria-label="Go to step 7"></button>
+      <button class="story-dot" data-index="7" aria-label="Go to step 8"></button>
+    </div>
+
+    <div class="story-cta"><a href="/signup" class="btn btn-primary">Start your own story — It's free</a></div>
+  </div>
+</section>
+
+<!-- ═══════════════ Features ═══════════════ -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label" style="justify-content:center;">Platform capabilities</div>
+      <h2 class="section-title">One platform. Deploy, store, generate, and ship.</h2>
+      <p class="section-sub">Everything a modern product needs — from first commit to live API — with zero DevOps knowledge required.</p>
     </div>
     <div class="features-grid">
       <div class="feature-card">
+        <div class="feature-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+        <h3>GitHub deployments</h3>
+        <p>Connect any public or private repo, choose a branch, configure the build — deploy on demand with one click.</p>
+        <span class="feature-card-tag">Git + PAT auth</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div>
+        <h3>No-GitHub upload deploy</h3>
+        <p>Drop a ZIP, tar.gz, or single HTML file and deploy straight to a live subdomain. No repo needed.</p>
+        <span class="feature-card-tag">ZIP · tar.gz · HTML</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <h3>Managed databases</h3>
+        <p>Spin up isolated Redis, MongoDB, MySQL, or PostgreSQL instances in seconds — each in its own container.</p>
+        <span class="feature-card-tag">Redis · Mongo · MySQL · Postgres</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 8v4l3 3"/><path d="M18 2l4 4-4 4"/><path d="M22 2h-4"/></svg></div>
+        <h3>AI API builder</h3>
+        <p>Describe an endpoint in plain English. JoyTree AI generates a live, containerized REST API instantly.</p>
+        <span class="feature-card-tag">JoyTree AI</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3>Real-time build logs</h3>
+        <p>A live terminal streams every line of your build as it happens — install, compile, deploy. No polling.</p>
+        <span class="feature-card-tag">Socket.io + Xterm.js</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <h3>Docker build isolation</h3>
+        <p>Every build and database runs in its own fresh container. No dependency leakage between projects.</p>
+        <span class="feature-card-tag">Docker · zero waste</span>
+      </div>
+      <div class="feature-card">
         <div class="feature-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-        <h3>Deploy from GitHub</h3>
-        <p>Connect a repo and push. JoyTree builds, deploys, and gives you a live URL — every push after that just redeploys.</p>
+        <h3>Browser-side code IDE</h3>
+        <p>Upload a ZIP and open it in the built-in IDE — browse, edit, and redeploy without leaving your browser.</p>
+        <span class="feature-card-tag">In-browser IDE</span>
       </div>
       <div class="feature-card">
-        <div class="feature-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v6H4zM4 14h16v6H4z"/><path d="M8 8h.01M8 18h.01"/></svg></div>
-        <h3>Describe it, get an API</h3>
-        <p>Skip scaffolding. Describe what the endpoint should do and JoyTree writes, deploys, and hosts the working REST API.</p>
+        <div class="feature-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/></svg></div>
+        <h3>Instant rollbacks</h3>
+        <p>Every deployment is versioned. One click takes your site back to any previous successful build.</p>
+        <span class="feature-card-tag">Version history</span>
       </div>
       <div class="feature-card">
-        <div class="feature-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
-        <h3>AI fixes broken builds</h3>
-        <p>When a deploy fails, AI reads the error, diagnoses the root cause, opens the fix, and redeploys — before you'd have finished reading the log.</p>
+        <div class="feature-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <h3>Domains + SSL</h3>
+        <p>Provision wildcard routing, map custom domains, and verify DNS with automatic SSL handling.</p>
+        <span class="feature-card-tag">DNS · edge SSL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ How it works ═══════════════ -->
+<section class="section" id="how-it-works" style="background:var(--bg-sunken);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label" style="justify-content:center;">Platform walkthrough</div>
+      <h2 class="section-title">Four powerful tools. One dashboard.</h2>
+      <p class="section-sub">Everything from code to database to live API — explained in plain steps.</p>
+    </div>
+
+    <div class="how-grid">
+      <div class="how-steps">
+        <div class="how-step active" data-step="0">
+          <div class="how-step-num">01</div>
+          <div><div class="how-step-title">Deploy via GitHub or file upload</div><div class="how-step-desc">Paste a repo URL or drop a ZIP. Configure build commands and env vars, then hit Deploy to go live at your own subdomain.</div></div>
+        </div>
+        <div class="how-step" data-step="1">
+          <div class="how-step-num">02</div>
+          <div><div class="how-step-title">Spin up a managed database</div><div class="how-step-desc">Create a Redis, MongoDB, MySQL, or PostgreSQL instance with one click and wire it into your project — no terminal needed.</div></div>
+        </div>
+        <div class="how-step" data-step="2">
+          <div class="how-step-num">03</div>
+          <div><div class="how-step-title">Generate a live API with AI</div><div class="how-step-desc">Describe the API you need in plain English. JoyTree AI builds and deploys a containerized REST endpoint instantly.</div></div>
+        </div>
+        <div class="how-step" data-step="3">
+          <div class="how-step-num">04</div>
+          <div><div class="how-step-title">Monitor, redeploy, and rollback</div><div class="how-step-desc">Every deployment streams live logs. One-click redeploys and instant rollbacks keep you in control — no downtime.</div></div>
+        </div>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-tabs">
+          <div class="code-tab active" data-tab="0">deploy.sh</div>
+          <div class="code-tab" data-tab="1">database.json</div>
+          <div class="code-tab" data-tab="2">api-prompt.txt</div>
+          <div class="code-tab" data-tab="3">rollback.sh</div>
+        </div>
+        <div class="code-panel active" data-panel="0"><span class="co"># Deploy via API — GitHub or upload</span>
+<span class="cy">curl</span> -X POST https://joytree.site/api/deploy \
+  -H <span class="cs">"Content-Type: application/json"</span> \
+  -d '{
+    <span class="cs">"name"</span>: <span class="cs">"my-react-app"</span>,
+    <span class="cs">"subdomain"</span>: <span class="cs">"myapp"</span>,
+    <span class="cs">"repoUrl"</span>: <span class="cs">"https://github.com/user/repo"</span>,
+    <span class="cs">"branch"</span>: <span class="cs">"main"</span>,
+    <span class="cs">"buildCmd"</span>: <span class="cs">"npm run build"</span>
+  }'
+
+<span class="co"># ✓ Live at myapp.joytree.site in ~30s</span></div>
+        <div class="code-panel" data-panel="1"><span class="co">// Managed database — created instantly</span>
+{
+  <span class="cs">"type"</span>: <span class="cs">"redis"</span>,
+  <span class="cs">"name"</span>: <span class="cs">"session-cache"</span>,
+  <span class="cs">"memoryMb"</span>: <span class="cn">256</span>,
+  <span class="cs">"status"</span>: <span class="cs">"running"</span>,
+  <span class="cs">"host"</span>: <span class="cs">"localhost"</span>,
+  <span class="cs">"port"</span>: <span class="cn">6380</span>
+}
+
+<span class="co">// Also supports: MongoDB, MySQL, PostgreSQL</span></div>
+        <div class="code-panel" data-panel="2"><span class="co"># Plain-English API prompt</span>
+
+<span class="cs">"Create a REST API that returns 10 trivia
+ questions with answers, categorized by
+ difficulty. Include a /random endpoint."</span>
+
+<span class="co"># JoyTree generates + deploys instantly:</span>
+<span class="co"># GET /api/live/flow_1780257588074</span>
+<span class="co"># GET /api/live/flow_1780257588074/random</span></div>
+        <div class="code-panel" data-panel="3"><span class="co"># Instant rollback — no rebuild needed</span>
+<span class="cy">curl</span> -X POST https://joytree.site/api/projects/myapp/rollback \
+  -H <span class="cs">"Authorization: Bearer &lt;token&gt;"</span> \
+  -d '{ <span class="cs">"deployId"</span>: <span class="cs">"prev-deploy-abc"</span> }'
+
+<span class="co"># Response: { ok: true, rolledBackTo: "prev-deploy-abc" }</span>
+<span class="co"># Zero downtime. Zero re-cloning.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ Flow diagram ═══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label" style="justify-content:center;">Under the hood</div>
+      <h2 class="section-title">Code → Build → Database → API → Live.</h2>
+    </div>
+    <div class="flow-grid">
+      <div class="flow-step"><div class="flow-step-badge">1</div><div class="flow-step-title">Source in</div><div class="flow-step-desc">GitHub repo clone or ZIP/HTML upload — your choice, same result.</div></div>
+      <div class="flow-step"><div class="flow-step-badge">2</div><div class="flow-step-title">Isolated build</div><div class="flow-step-desc">Fresh Docker container: install → build → copy output. Logs stream live throughout.</div></div>
+      <div class="flow-step"><div class="flow-step-badge">3</div><div class="flow-step-title">Database</div><div class="flow-step-desc">Optionally attach Redis, MongoDB, MySQL, or PostgreSQL with auto-generated credentials.</div></div>
+      <div class="flow-step"><div class="flow-step-badge">4</div><div class="flow-step-title">AI API</div><div class="flow-step-desc">Describe your API in plain English — a live REST endpoint deploys in seconds, no code.</div></div>
+      <div class="flow-step"><div class="flow-step-badge">5</div><div class="flow-step-title">Subdomain routing</div><div class="flow-step-desc">your-project.joytree.site maps automatically — SSL included, zero config.</div></div>
+      <div class="flow-step"><div class="flow-step-badge">6</div><div class="flow-step-title">Live</div><div class="flow-step-desc">App, database, and API all running. One-click redeploy or rollback any time.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ Snippets ═══════════════ -->
+<section class="section" id="snippets" style="background:var(--bg-sunken);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label" style="justify-content:center;">Ready to use</div>
+      <h2 class="section-title">Deploy, store, query, generate.</h2>
+      <p class="section-sub">Real references covering every part of the JoyTree platform.</p>
+    </div>
+    <div class="snippet-grid">
+      <div class="snippet-card">
+        <div class="snippet-header"><div><div class="snippet-title">Upload Deploy API</div><div class="snippet-desc">Deploy a ZIP archive — no GitHub needed</div></div><span class="snippet-lang">HTTP</span></div>
+        <div class="snippet-body"><span class="co"># POST a ZIP/tar.gz to deploy instantly</span>
+<span class="cy">curl</span> -X POST https://joytree.site/api/upload-deploy \
+  -H <span class="cs">"Authorization: Bearer &lt;token&gt;"</span> \
+  -F <span class="cs">"archive=@./my-site.zip"</span> \
+  -F <span class="cs">"subdomain=my-site"</span>
+
+<span class="co"># ✓ Live at my-site.joytree.site</span></div>
+        <button class="snippet-copy">Copy</button>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header"><div><div class="snippet-title">Spin Up a Database</div><div class="snippet-desc">Redis, MongoDB, MySQL, or PostgreSQL</div></div><span class="snippet-lang">JSON</span></div>
+        <div class="snippet-body"><span class="co">// POST /api/databases — create instantly</span>
+{
+  <span class="cs">"name"</span>: <span class="cs">"session-store"</span>,
+  <span class="cs">"type"</span>: <span class="cs">"redis"</span>,
+  <span class="cs">"memoryMb"</span>: <span class="cn">256</span>
+}
+
+<span class="co">// Response — ready in seconds</span>
+{ <span class="cs">"host"</span>: <span class="cs">"localhost"</span>, <span class="cs">"port"</span>: <span class="cn">6381</span> }</div>
+        <button class="snippet-copy">Copy</button>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header"><div><div class="snippet-title">AI API Builder</div><div class="snippet-desc">Plain-English → live REST endpoint</div></div><span class="snippet-lang">AI</span></div>
+        <div class="snippet-body"><span class="co"># Describe it. JoyTree builds it.</span>
+<span class="cs">"Return 10 quiz questions with answers.
+ Include a /random endpoint."</span>
+
+<span class="co"># GET /api/live/flow_17802… → all 10</span>
+<span class="co"># GET /api/live/flow_17802…/random</span></div>
+        <button class="snippet-copy">Copy</button>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header"><div><div class="snippet-title">Wildcard Subdomain Routing</div><div class="snippet-desc">Every project gets its own URL instantly</div></div><span class="snippet-lang">Nginx</span></div>
+        <div class="snippet-body"><span class="ck">server</span> {
+  <span class="ck">listen</span> <span class="cn">80</span>;
+  <span class="ck">server_name</span> ~<span class="cs">^(?&lt;sub&gt;.+)\.joytree\.site$</span>;
+  <span class="ck">location</span> / {
+    <span class="ck">root</span> <span class="cs">/var/www/user-sites/$sub/dist</span>;
+    <span class="ck">try_files</span> $uri $uri/ /index.html;
+  }
+}</div>
+        <button class="snippet-copy">Copy</button>
       </div>
     </div>
   </div>
@@ -131,11 +405,27 @@
 
 <!-- ═══════════════ CTA ═══════════════ -->
 <section class="cta-band">
-  <h2>Ship your first project today</h2>
-  <p>Free wildcard subdomain, no credit card required.</p>
+  <h2>Deploy apps, run databases, and generate APIs — all from one dashboard.</h2>
+  <p>Start free. Go live in minutes. No DevOps knowledge, no GitHub required.</p>
   <a href="/signup" class="btn btn-primary">Get Started — It's Free</a>
+  <div class="cta-note">Free to self-host. No limits. No vendor lock-in.</div>
 </section>
 
+<!-- ═══════════════ Footer ═══════════════ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a href="/" class="footer-brand"><img src="favicon_256.png" alt=""><span>JOYTREE</span></a>
+    <nav class="footer-links">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="https://docs.joytree.site" target="_blank" rel="noopener">Docs</a>
+    </nav>
+    <div class="footer-copy">Built by developers, for developers.</div>
+  </div>
+</footer>
+
+<script src="welcome-loop.js?v=1"></script>
 <script src="home.js?v=1"></script>
 </body>
 </html>

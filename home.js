@@ -49,6 +49,59 @@
         });
       });
     }
+    // ------------------------------------------------------------- story carousel
+    var storySlides = Array.prototype.slice.call(document.querySelectorAll('.story-slide'));
+    var storyDots = Array.prototype.slice.call(document.querySelectorAll('.story-dot'));
+    var storyIdx = 0;
+    var storyTimer = null;
+
+    function showStory(i) {
+      storyIdx = (i + storySlides.length) % storySlides.length;
+      storySlides.forEach(function (s, n) { s.classList.toggle('active', n === storyIdx); });
+      storyDots.forEach(function (d, n) { d.classList.toggle('active', n === storyIdx); });
+    }
+    function storyAutoplay() {
+      if (storyTimer) clearInterval(storyTimer);
+      storyTimer = setInterval(function () { showStory(storyIdx + 1); }, 3400);
+    }
+    if (storySlides.length) {
+      var prevBtn = document.getElementById('storyPrev');
+      var nextBtn = document.getElementById('storyNext');
+      if (prevBtn) prevBtn.addEventListener('click', function () { showStory(storyIdx - 1); storyAutoplay(); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { showStory(storyIdx + 1); storyAutoplay(); });
+      storyDots.forEach(function (dot, n) {
+        dot.addEventListener('click', function () { showStory(n); storyAutoplay(); });
+      });
+      var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reducedMotion) storyAutoplay();
+    }
+
+    // ------------------------------------------------------ how-it-works tabs
+    var howSteps = Array.prototype.slice.call(document.querySelectorAll('.how-step'));
+    var codeTabs = Array.prototype.slice.call(document.querySelectorAll('.code-tab'));
+    var codePanels = Array.prototype.slice.call(document.querySelectorAll('.code-panel'));
+    function selectHowIndex(i) {
+      howSteps.forEach(function (s, n) { s.classList.toggle('active', n === i); });
+      codeTabs.forEach(function (t, n) { t.classList.toggle('active', n === i); });
+      codePanels.forEach(function (p, n) { p.classList.toggle('active', n === i); });
+    }
+    howSteps.forEach(function (step, i) { step.addEventListener('click', function () { selectHowIndex(i); }); });
+    codeTabs.forEach(function (tab, i) { tab.addEventListener('click', function () { selectHowIndex(i); }); });
+
+    // ---------------------------------------------------------- snippet copy
+    document.querySelectorAll('.snippet-copy').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var body = btn.closest('.snippet-card').querySelector('.snippet-body');
+        var text = body.innerText;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            var orig = btn.textContent;
+            btn.textContent = 'Copied!';
+            setTimeout(function () { btn.textContent = orig; }, 1600);
+          });
+        }
+      });
+    });
   });
 
   // ---------------------------------------------------------------- PWA
