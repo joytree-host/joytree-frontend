@@ -1,5 +1,5 @@
 /* ==========================================================================
-   JoyTree — Home page (home.css)
+   JOYTREE — Home page (home.css)
    Depends on theme.css being loaded first for tokens.
    ========================================================================== */
 
@@ -59,7 +59,7 @@
 /* ------------------------- Signature element: live demo ---------------------
    The one real risk this page takes: instead of generic feature icon cards,
    show the actual product moment — a plain-English prompt turning into a
-   live, deployed endpoint. This is the thing JoyTree does that a template
+   live, deployed endpoint. This is the thing JOYTREE does that a template
    deploy dashboard doesn't. */
 .demo-panel{
   max-width: 640px; margin: 48px auto 0;

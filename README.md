@@ -1,6 +1,6 @@
-# JoyTree Frontend (rebuild)
+# JOYTREE Frontend (rebuild)
 
-Rebuilding the JoyTree marketing/app frontend page by page — separate HTML/CSS
+Rebuilding the JOYTREE marketing/app frontend page by page — separate HTML/CSS
 files instead of one monolithic `index.html`, sharing a single theme system
 with [docs.joytree.site](https://docs.joytree.site) so dark/light mode and
 visual language are consistent across the whole product.
